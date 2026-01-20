@@ -1,7 +1,12 @@
-<nav>
-    <a href="/">Home</a>
-    <a href="{{ route('about') }}">About</a>
-    <a href="/services">Services</a>
-    <a href="/contact">Contact</a>
-    <a href="/login">Login</a>
-</nav>
+<header>
+    <div class="header-content">
+        <div class="logo" onclick="showPage('home')">YourBrand</div>
+        <nav>
+            <ul>
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('login')">Login</a></li>
+                <li><a onclick="showPage('register')">Register</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

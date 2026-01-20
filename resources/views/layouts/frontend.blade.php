@@ -11,7 +11,9 @@
 @include('frontend.partials.navbar')
 
 <main>
-    @yield('content')
+  <div class="main-content">
+     @yield('content')
+  </div>
 </main>
 
 @include('frontend.partials.footer')
