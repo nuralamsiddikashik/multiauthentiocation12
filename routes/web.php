@@ -14,6 +14,8 @@ Route::get( '/about', [FrontController::class, 'about'] )->name( 'about' );
 
 Route::controller( UserController::class )->group( function () {
     Route::get( '/user/login', 'login' )->name( 'user.login' );
+    Route::get( '/user/register', 'register' )->name( 'user.register' );
+
 } );
 
 /**
