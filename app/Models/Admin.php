@@ -8,6 +8,6 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable {
     use HasFactory, Notifiable;
-
-    protected $fillable = ['name', 'email', 'password', 'token'];
+    protected $table    = 'admins';
+    protected $fillable = ['email', 'password'];
 }

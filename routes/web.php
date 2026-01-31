@@ -1,28 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\FrontController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get( '/', [FrontController::class, 'index'] )->name( 'home' );
-Route::get( '/about', [FrontController::class, 'about'] )->name( 'about' );
-
 /**
- * User Routes
+ * Frontend Routes
  */
-
-Route::controller( UserController::class )->group( function () {
-    Route::get( '/user/login', 'login' )->name( 'user.login' );
-    Route::get( '/user/register', 'register' )->name( 'user.register' );
-
-} );
-
-/**
- * Admin Routes
- */
-
-Route::controller( AdminController::class )->group( function () {
-    Route::get( '/admin/login', 'adminLogin' )->name( 'admin.login' );
-    Route::get( '/admin/dashboard', 'dashboard' )->name( 'admin.dashboard' );
-} );
+Route::get( '/', [HomeController::class, 'home'] )->name( 'home' );

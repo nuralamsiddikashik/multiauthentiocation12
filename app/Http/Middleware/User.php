@@ -14,8 +14,8 @@ class User {
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle( Request $request, Closure $next ): Response {
-        if ( !Auth::guard( 'admin' )->check() ) {
-            return redirect()->route( 'admin_login' );
+        if ( !Auth::guard( 'user' )->check() ) {
+            return redirect()->route( 'login' );
         }
 
         return $next( $request );
