@@ -1,4 +1,4 @@
-<h1>Hello Admin Login Panel ! </h1>
+{{-- <h1>Hello Admin Login Panel ! </h1>
 
 @if($errors->any())
     <div>
@@ -38,4 +38,4 @@
     </div>
 </form>
 
-<a href="{{ route('home') }}">Home</a> | <a href="{{ route('login') }}">User Login</a> | <a href="{{ route('register') }}">User Register</a>
+<a href="{{ route('home') }}">Home</a> | <a href="{{ route('login') }}">User Login</a> | <a href="{{ route('register') }}">User Register</a> --}}
