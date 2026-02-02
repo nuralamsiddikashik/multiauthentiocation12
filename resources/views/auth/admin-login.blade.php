@@ -49,7 +49,7 @@
         </form>
 
         <div class="auth-links">
-            <a href="#" onclick="showPage('forgot-password')">Forgot password?</a>
+            <a href="{{ route('auth.admin-forgot-password') }}">Forgot password?</a>
         </div>
 
         <div class="divider">OR</div>

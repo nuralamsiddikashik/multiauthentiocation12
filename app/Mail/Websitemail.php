@@ -13,37 +13,27 @@ class Websitemail extends Mailable {
 
     public $subject, $body;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct( $subject, $body ) {
         $this->subject = $subject;
         $this->body    = $body;
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope {
         return new Envelope(
             subject: $this->subject,
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content {
         return new Content(
             view: 'email',
+            with: [
+                'subject' => $this->subject,
+                'body'    => $this->body, // ✅ message → body
+            ],
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array {
         return [];
     }
