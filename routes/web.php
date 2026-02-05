@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
  * Frontend Routes
  */
 Route::get( '/', [HomeController::class, 'home'] )->name( 'home' );
+Route::get( '/registration', [HomeController::class, 'register'] )->name( 'register' );
 
 Route::get( '/test-bdapi', function () {
 
