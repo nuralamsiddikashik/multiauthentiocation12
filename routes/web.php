@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\LocationController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -9,12 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::get( '/', [HomeController::class, 'home'] )->name( 'home' );
 Route::get( '/registration', [HomeController::class, 'register'] )->name( 'register' );
 
-Route::get( '/test-bdapi', function () {
-
-    $res = Http::withHeaders( [
-        'X-RapidAPI-Key'  => config( 'services.bdapi.key' ),
-        'X-RapidAPI-Host' => config( 'services.bdapi.host' ),
-    ] )->get( 'https://bdapis.com/api/v1.2/division/rangpur' );
-
-    return $res->json();
+Route::controller( LocationController::class )->group( function () {
+    Route::get( '/divisions', 'divisions' );
+    Route::get( '/districts/{division}', 'districts' );
+    Route::get( '/upazilas/{district}', 'upazilas' );
 } );

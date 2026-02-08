@@ -14,16 +14,14 @@ return new class extends Migration {
             $table->string( 'name' );
             $table->string( 'email' )->unique();
             $table->string( 'photo' )->nullable();
-            $table->string( 'password' );
-            $table->string( 'phone' );
-            $table->string( 'adress' );
-            $table->string( 'country' );
-            $table->string( 'state' );
-            $table->string( 'city' );
-            $table->string( 'zip' );
-            $table->string( 'token' );
-            $table->string( 'status' )->default( 0 )->comment( '0=pending, 1=activem 2= suspended' );
-
+            $table->string( 'password' )->nullable();
+            $table->string( 'phone' )->nullable();
+            $table->string( 'address' )->nullable();
+            $table->string( 'state' ); // Division name
+            $table->string( 'city' ); // District / Upazila
+            $table->string( 'zip' )->nullable();
+            $table->string( 'token' )->nullable();
+            $table->string( 'status' )->default( 0 );
             $table->timestamps();
         } );
 

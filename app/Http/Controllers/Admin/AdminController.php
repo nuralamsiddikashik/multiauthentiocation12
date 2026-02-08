@@ -109,7 +109,6 @@ class AdminController extends Controller {
         $admin->token = $token;
         $admin->update();
 
-        // ✅ FIXED LINE (IMPORTANT)
         $resetLink = route( 'auth.admin-reset-password', [
             'token' => $token,
             'email' => $request->email,
