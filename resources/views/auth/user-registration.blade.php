@@ -1,108 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create User</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-</head>
-<body>
+@extends('layouts.frontend')
 
-<h3>Create User</h3>
+@section('content')
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Create Account</h2>
+            <p>Sign up to get started</p>
+            
+            <form method="POST" action="{{ route('user.store') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
 
-@if(session('success'))
-    <p style="color:green">{{ session('success') }}</p>
-@endif
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone" required>
+                </div>
 
-<form method="POST" action="{{ route('user.store') }}">
-@csrf
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                </div>
 
-<input type="text" name="name" placeholder="Name"><br><br>
-<input type="email" name="email" placeholder="Email"><br><br>
-<input type="password" name="password" placeholder="Password"><br><br>
-<input type="text" name="phone" placeholder="Phone"><br><br>
-<input type="text" name="address" placeholder="Address"><br><br>
+                <div class="form-group">
+                    <label for="zip">Zip</label>
+                    <input type="text" id="address" name="zip" placeholder="Enter zip code" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+                
+                <!-- Division -->
+                <div class="form-group">
+                    <label for="division">Select your division</label>
+                    <select id="division" name="state" required>
+                        <option value="">Select division</option>
+                    </select>
+                </div>
+                <!-- District -->
+                <div class="form-group">
+                    <label for="district">Select your division</label>
+                    <select id="district" name="city" required>
+                        <option value="">Select district</option>
+                    </select>
+                </div>
+                <!-- Upazila (only UI) -->
+                <div class="form-group">
+                    <label for="upazila">Select your division</label>
+                    <select id="upazila"  required>
+                        <option value="">Select upazila</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Create Account</button>
+            </form>
+            
+            <div class="divider">or</div>
+            
+            <div class="auth-links">
+                Already have an account? <a onclick="showPage('login')">Login</a>
+            </div>
+        </div>
+</div>
+    
+@endsection
 
-<!-- Division -->
-<select id="division" name="state">
-    <option value="">বিভাগ নির্বাচন করুন</option>
-</select>
-<br><br>
-
-<!-- District -->
-<select id="district" name="city">
-    <option value="">জেলা নির্বাচন করুন</option>
-</select>
-<br><br>
-
-<!-- Upazila (only UI) -->
-<select id="upazila">
-    <option value="">উপজেলা নির্বাচন করুন</option>
-</select>
-<br><br>
-
-<input type="text" name="zip" placeholder="ZIP"><br><br>
-
-<button type="submit">Save User</button>
-
-</form>
-
-<script>
-$(function () {
-
-    // ✅ Load Divisions
-    $.get('/divisions', function (res) {
-        res.data.forEach(item => {
-            $('#division').append(
-                `<option value="${item.division}">${item.division}</option>`
-            );
-        });
-    });
-
-    // ✅ Division → District
-    $('#division').on('change', function () {
-
-        let division = $(this).val();
-
-        $('#district').html('<option value="">জেলা নির্বাচন করুন</option>');
-        $('#upazila').html('<option value="">উপজেলা নির্বাচন করুন</option>');
-
-        if (!division) return;
-
-        $.get(`/districts/${division}`, function (res) {
-            res.data.forEach(item => {
-                $('#district').append(
-                    `<option value="${item.district}">
-                        ${item.district}
-                     </option>`
-                );
-            });
-        });
-    });
-
-    // ✅ District → Upazila (REAL RESPONSE FIX)
-    $('#district').on('change', function () {
-
-        let district = $(this).val();
-
-        $('#upazila').html('<option value="">উপজেলা নির্বাচন করুন</option>');
-
-        if (!district) return;
-
-        $.get(`/upazilas/${district}`, function (res) {
-
-            // real API structure
-            let upazilas = res.data[0].upazillas;
-
-            upazilas.forEach(name => {
-                $('#upazila').append(
-                    `<option value="${name}">${name}</option>`
-                );
-            });
-        });
-    });
-
-});
-</script>
-
-</body>
-</html>
