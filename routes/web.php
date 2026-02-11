@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\LocationController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -10,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::get( '/', [HomeController::class, 'home'] )->name( 'home' );
 Route::get( '/registration', [HomeController::class, 'register'] )->name( 'register' );
 
-Route::controller( LocationController::class )->group( function () {
-    Route::get( '/divisions', 'divisions' );
-    Route::get( '/districts/{division}', 'districts' );
-    Route::get( '/upazilas/{district}', 'upazilas' );
-} );
+// Route::controller( LocationController::class )->group( function () {
+//     Route::get( '/divisions', 'divisions' );
+//     Route::get( '/districts/{division}', 'districts' );
+//     Route::get( '/upazilas/{district}', 'upazilas' );
+// } );
