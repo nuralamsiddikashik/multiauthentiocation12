@@ -46,10 +46,230 @@ header {
     cursor: pointer;
 }
 
+.notification-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.3s;
+}
+
+.notification-icon:hover {
+    transform: scale(1.1);
+}
+
+.notification-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #f5576c;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    border: 2px solid #667eea;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 360px;
+    max-height: 450px;
+    overflow: hidden;
+    display: none;
+    z-index: 1000;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification-dropdown.show {
+    display: block;
+}
+
+.notification-dropdown-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e9ecef;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-dropdown-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mark-all-read {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.mark-all-read:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.notification-list {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.notification-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notification-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+.notification-list-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    gap: 12px;
+    position: relative;
+}
+
+.notification-list-item:hover {
+    background: #f8f9fa;
+}
+
+.notification-list-item.unread {
+    background: #f0f4ff;
+}
+
+.notification-list-item.unread::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #667eea;
+}
+
+.notification-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+.notification-item-content {
+    flex: 1;
+}
+
+.notification-item-text {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.notification-item-time {
+    font-size: 12px;
+    color: #999;
+}
+
+.no-notifications-message {
+    padding: 40px 20px;
+    text-align: center;
+    color: #999;
+}
+
+.no-notifications-message svg {
+    width: 48px;
+    height: 48px;
+    fill: #ddd;
+    margin-bottom: 12px;
+}
+
+.notification-dropdown-footer {
+    padding: 12px 20px;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.view-all-link {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.view-all-link:hover {
+    color: #764ba2;
+}
+
 nav ul {
     display: flex;
     list-style: none;
     gap: 2rem;
+}
+
+nav ul li {
+    line-height: 34px;
 }
 
 nav a {
@@ -62,6 +282,34 @@ nav a {
 
 nav a:hover {
     opacity: 0.8;
+}
+
+.logout-btn {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
 }
 
 /* Body/Main Styles */
@@ -249,6 +497,408 @@ main {
     cursor: pointer;
 }
 
+.success-message {
+    background: #10b981;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: none;
+    text-align: center;
+    font-weight: 500;
+}
+
+.success-message.show {
+    display: block;
+}
+
+/* User List Styles */
+.user-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.user-header {
+    padding: 30px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.user-header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.user-header p {
+    opacity: 0.9;
+    font-size: 14px;
+}
+
+.controls {
+    padding: 20px 40px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search-btn {
+    padding: 10px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.search-btn:hover {
+    background: #5568d3;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.add-btn {
+    padding: 10px 24px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.add-btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+thead {
+    background: #f8f9fa;
+}
+
+th {
+    padding: 16px 40px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background 0.2s;
+}
+
+tbody tr:hover {
+    background: #f8f9fa;
+}
+
+td {
+    padding: 20px 40px;
+    color: #212529;
+    font-size: 14px;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 2px;
+}
+
+.user-email {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge.inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    background: #e7f3ff;
+    color: #0056b3;
+}
+
+.btn-edit:hover {
+    background: #cce5ff;
+}
+
+.btn-delete {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    background: #ffe5e7;
+    color: #dc3545;
+}
+
+.btn-delete:hover {
+    background: #ffccd2;
+}
+
+.user-footer {
+    padding: 20px 40px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.showing-text {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.pagination {
+    display: flex;
+    gap: 5px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border: 1px solid #dee2e6;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.page-btn:hover {
+    background: #f8f9fa;
+}
+
+.page-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+/* Notification Bar Styles */
+.notification-bar {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.2);
+    position: relative;
+}
+
+.notification-bar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        #fff 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        #fff 100%
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.notification-bar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    animation: scrollNotifications 20s linear infinite;
+}
+
+@keyframes scrollNotifications {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.notification-bar:hover ul {
+    animation-play-state: paused;
+}
+
+.notification-item {
+    padding: 15px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+    position: relative;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.notification-item::before {
+    content: "🔔";
+    margin-right: 10px;
+    font-size: 18px;
+    animation: ring 2s ease-in-out infinite;
+}
+
+@keyframes ring {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    10%,
+    30% {
+        transform: rotate(-10deg);
+    }
+    20%,
+    40% {
+        transform: rotate(10deg);
+    }
+}
+
+.notification-item .time {
+    font-size: 12px;
+    opacity: 0.8;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.no-notifications {
+    padding: 20px 40px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 /* Footer Styles */
 footer {
     background: #2d3748;
@@ -305,6 +955,7 @@ footer {
 
     nav ul {
         gap: 1rem;
+        font-size: 14px;
     }
 
     .hero h1 {
@@ -313,5 +964,175 @@ footer {
 
     .auth-box {
         padding: 2rem;
+    }
+
+    .user-header,
+    .controls,
+    td,
+    th,
+    .user-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .user-header h1 {
+        font-size: 22px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        min-width: 100%;
+        flex-direction: row;
+    }
+
+    .search-btn {
+        padding: 10px 15px;
+    }
+
+    .user-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    th,
+    td {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+
+    .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .user-email {
+        font-size: 12px;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btn-edit,
+    .btn-delete {
+        padding: 6px 10px;
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+
+    .page-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notification-item {
+        padding: 12px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .notification-item .time {
+        align-self: flex-end;
+    }
+
+    .notification-dropdown {
+        width: 320px;
+        right: -20px;
+    }
+
+    .notification-list {
+        max-height: 300px;
+    }
+
+    main {
+        padding: 2rem 1rem;
+    }
+
+    .hero {
+        padding: 2rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        gap: 0.5rem;
+        font-size: 12px;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .auth-box {
+        padding: 1.5rem;
+    }
+
+    .auth-box h2 {
+        font-size: 1.5rem;
+    }
+
+    .user-header h1 {
+        font-size: 20px;
+    }
+
+    .user-header p {
+        font-size: 13px;
+    }
+
+    .add-btn {
+        width: 100%;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th {
+        font-size: 11px;
+        padding: 10px 12px;
+    }
+
+    td {
+        padding: 10px 12px;
+    }
+
+    .badge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .showing-text {
+        font-size: 12px;
     }
 }
