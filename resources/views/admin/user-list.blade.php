@@ -116,10 +116,16 @@
                             </td>
                             <td>{{ $user->created_at->format('M d, Y') }}</td>
                             <td>
-                                <div class="actions">
-                                    <button class="btn-edit">Edit</button>
-                                    <button class="btn-delete">Delete</button>
-                                </div>
+                                <form method="POST" action="{{ route('admin.users.update-status', $user->id) }}">
+                                    @csrf
+                                    @method('PATCH')
+
+                                    <select name="status" onchange="this.form.submit()">
+                                        <option value="0" @selected($user->status == 0)>Pending</option>
+                                        <option value="1" @selected($user->status == 1)>Active</option>
+                                        <option value="2" @selected($user->status == 2)>Suspended</option>
+                                    </select>
+                                </form>
                             </td>
                         </tr>
                     @empty
