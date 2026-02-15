@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserManagmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix( 'admin' )->group( function () {
@@ -32,5 +33,10 @@ Route::prefix( 'admin' )->group( function () {
 
         Route::post( '/logout', [AdminController::class, 'logout'] )
             ->name( 'admin.logout' );
+
+        Route::get( 'users/list', [UserManagmentController::class, 'index'] )->name( 'admin.users.list' );
+
+        Route::patch( '/users/{user}/status', [AdminController::class, 'updateStatus'] )
+            ->name( 'admin.users.update-status' );
     } );
 } );
