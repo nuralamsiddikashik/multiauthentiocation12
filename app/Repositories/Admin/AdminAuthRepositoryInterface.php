@@ -9,4 +9,6 @@ interface AdminAuthRepositoryInterface {
     public function attemptLogin( array $credentials ): bool;
 
     public function logout( Request $request ): void;
+
+    public function updateStatus( int $userId, int $status ): bool;
 }
