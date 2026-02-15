@@ -3,6 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,5 +23,11 @@ class AdminAuthRepository implements AdminAuthRepositoryInterface {
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+    }
+
+    public function updateStatus( int $userId, int $status ): bool {
+        return User::where( 'id', $userId )->update( [
+            'status' => $status,
+        ] );
     }
 }
