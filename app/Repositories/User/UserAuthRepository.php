@@ -27,6 +27,6 @@ class UserAuthRepository implements UserAuthRepositoryInterface {
     }
 
     public function login( array $credentials ): bool {
-        return Auth::attempt( $credentials );
+        return Auth::guard( 'user' )->attempt( $credentials );
     }
 }
