@@ -19,6 +19,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+
+                <div class="form-group">
                     <label for="phone">Phone</label>
                     <input type="text" id="phone" name="phone" placeholder="Enter your phone" required>
                 </div>
@@ -29,36 +34,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="zip">Zip</label>
-                    <input type="text" id="address" name="zip" placeholder="Enter zip code" required>
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" placeholder="Enter your state" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="Enter your city" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                    <label for="zip">Zip Code</label>
+                    <input type="text" id="zip" name="zip" placeholder="Enter your zip code" required>
                 </div>
-                
-                <!-- Division -->
-                <div class="form-group">
-                    <label for="division">Select your division</label>
-                    <select id="division" name="state" required>
-                        <option value="">Select division</option>
-                    </select>
-                </div>
-                <!-- District -->
-                <div class="form-group">
-                    <label for="district">Select your division</label>
-                    <select id="district" name="city" required>
-                        <option value="">Select district</option>
-                    </select>
-                </div>
-                <!-- Upazila (only UI) -->
-                <div class="form-group">
-                    <label for="upazila">Select your division</label>
-                    <select id="upazila"  required>
-                        <option value="">Select upazila</option>
-                    </select>
-                </div>
+
+             
                 
                 <button type="submit" class="btn">Create Account</button>
             </form>
