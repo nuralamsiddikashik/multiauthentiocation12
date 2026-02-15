@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UpdateUserStatusRequest;
 use App\Mail\Websitemail;
 use App\Models\Admin;
+use App\Models\User;
 use App\Repositories\Admin\AdminAuthRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -156,5 +158,25 @@ class AdminController extends Controller {
             'type'    => 'success',
             'message' => 'Password has been reset successfully. You can now log in with your new password.',
         ] );
+    }
+
+    public function updateStatus( UpdateUserStatusRequest $request, User $user ) {
+        try {
+            $this->adminAuthRepo->updateStatus( $user->id, (int) $request->status );
+
+            return back()->with( 'toast', [
+                'type'    => 'success',
+                'message' => 'User status updated successfully',
+            ] );
+        } catch ( \Throwable $e ) {
+            Log::error( 'User Status Update Error', [
+                'error' => $e->getMessage(),
+            ] );
+
+            return back()->with( 'toast', [
+                'type'    => 'error',
+                'message' => 'Failed to update user status',
+            ] );
+        }
     }
 }
